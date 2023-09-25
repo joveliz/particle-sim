@@ -40,6 +40,11 @@ class Particle {
         if(this.position[0] <= 0 || this.position[0] >= WIDTH){ this.velocity[0] *= -5 }
         if(this.position[1] <= 0 || this.position[1] >= HEIGHT){ this.velocity[1] *= -5 }
     }
+
+    updateVel(fx, fy) {
+        this.velocity[0] = (this.velocity[0] + fx) / 2
+        this.velocity[1] = (this.velocity[1] + fy) / 2
+    }
 }
 
 function randCoord(axis) {
@@ -87,8 +92,7 @@ function RAF() {
                 }   
             }
         })
-        current.velocity[0] = (current.velocity[0] + fx) / 2
-        current.velocity[1] = (current.velocity[1] + fy) / 2
+        current.updateVel(fx, fy)
         current.updatePos()
         grid.updateClient(current)
         current.draw()
